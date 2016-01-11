@@ -1,1 +1,1 @@
-User Engagement with a Social Discovery App
+##User Engagement with a Social Discovery App
