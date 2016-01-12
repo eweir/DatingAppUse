@@ -20,7 +20,8 @@ def random_forest(X, y):
     rfc = RandomForestClassifier(n_estimators=100, n_jobs=-1)
     rfc = rfc.fit(X_train, y_train)
     pred = rfc.predict(X_test)
-    fpr, tpr, thresholds = roc_curve(y_test, pred)
+    probX = rfc.predict_proba(X_test)
+    fpr, tpr, thresholds = roc_curve(y_test, probX[:, 1])
     model_auc = auc(fpr, tpr)
     print "Random Forest roc_auc score: {}".format(roc_auc_score(y_test, pred))
     return rfc
