@@ -1,11 +1,12 @@
+'''
+Functions to create and/or modify demographic variables
+'''
+
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 import datetime as DT
 
-'''
-Functions to create and/or modify demographic variables
-'''
 
 def gender_categories(row):
     '''
@@ -29,7 +30,6 @@ def gender_categories(row):
         return 4
     if row['Genders'] == '["man", "nonbinary"]':
         return 5
-
 
 
 def gender_category_column(df):

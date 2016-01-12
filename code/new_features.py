@@ -65,6 +65,17 @@ def answering_questions(row):
     if row['churn_month']==True and row['q_churn_month']==True:
         return 3
 
+def message_counts(df):
+    '''
+    Create column that is the count of the number of questions answered by each user
+    '''
+    message_counts = df.groupby('user_id').size()
+    message_counts.name = 'message_counts'
+    df = df.set_index('user_id').join(message_counts).reset_index()
+    #Set counts = 0 if user has not sent any messages
+    df.loc[df.message_id.isnull(), 'counts'] = 0
+    return df
+
 
 
 # def churn_columns(df):

@@ -1,11 +1,12 @@
+'''
+Create variables based on geographic user data
+'''
+
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
 import datetime as DT
 
-'''
-These functions create variables based on geographic user data
-'''
 
 def categorize_region(row):
     '''
