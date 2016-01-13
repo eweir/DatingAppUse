@@ -1,3 +1,7 @@
+'''
+Create sub-tables to run models on churn, users, and question data
+'''
+
 import pandas as pd
 import numpy as np
 
@@ -11,7 +15,7 @@ def users_table(df):
     In this dataframe, multiple questions and answers per user are not retained and
     predictors consist of data unique to the user (e.g., age, search_proximity, education)
     '''
-    df = df.sort_values('engagement_level').groupby('user_id', as_index=False).first()
+    df = df.groupby('user_id', as_index=False).first()
     return df
 
 def questions_table(df):
@@ -32,7 +36,7 @@ def questions_table(df):
     df = df[df['question_body'].notnull()]
     return df
 
-def churn_table_use(df, date1, date2, col='last_seen_at'):
+def churn_table_use(df, date1='2015-10-16', date2='2015-10-03', col='last_seen_at'):
     '''
     Create churn table and add 2 columns for churn:
         - churn_2weeks: based on activity within 2 weeks of most recent date

@@ -1,3 +1,7 @@
+'''
+Add features for visualizations and models
+'''
+
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
@@ -7,13 +11,12 @@ def question_counts(df):
     '''
     Create column that is the count of the number of questions answered by each user
     '''
-    counts = df.groupby('user_id').size()
-    counts.name = 'counts'
-    df = df.set_index('user_id').join(counts).reset_index()
+    q_counts = df.groupby('user_id').size()
+    q_counts.name = 'q_counts'
+    df = df.set_index('user_id').join(q_counts).reset_index()
     #Set counts = 0 if user has not answered any questions
-    df.loc[df.question_id.isnull(), 'counts'] = 0
+    df.loc[df.question_id.isnull(), 'q_counts'] = 0
     return df
-
 
 def dummify(new_df, col):
     '''
@@ -50,21 +53,6 @@ def to_day_of_week(df, col):
     df['day_answered'] = df[col].dt.dayofweek
     return df
 
-def answering_questions(row):
-    '''
-    Many users are logging in but not answering questions. Creating variables for
-    these cases.
-    1: user still logging in but not answering questions
-    2: user still logging in and answering questions
-    3: user not logging in or answering questions
-    '''
-    if row['churn_month']==False and row['q_churn_month']==True:
-        return 1
-    if row['churn_month']==False and row['q_churn_month']==False:
-        return 2
-    if row['churn_month']==True and row['q_churn_month']==True:
-        return 3
-
 def message_counts(df):
     '''
     Create column that is the count of the number of questions answered by each user
@@ -74,6 +62,22 @@ def message_counts(df):
     df = df.set_index('user_id').join(message_counts).reset_index()
     #Set counts = 0 if user has not sent any messages
     df.loc[df.message_id.isnull(), 'counts'] = 0
+    return df
+
+def message_and_connect(row, col1='num_connections', col2='message_counts'):
+    '''
+    Create column for users who have made connections and sent messages
+    '''
+    return row['connected'] == True and row['messaging'] == True
+
+def message_and_connect_column(df, col1='num_connections', col2='message_counts'):
+    '''
+    Create message_and_connect column
+    '''
+    df['num_connections'] = df['num_connections'].fillna(0)
+    df['connected'] = df['num_connections'] > 1
+    df['messaging'] = df['message_counts'] > 2
+    df['message_conn'] = df.apply(lambda row: message_and_connect(row), axis=1)
     return df
 
 

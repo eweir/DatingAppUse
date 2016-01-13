@@ -1,3 +1,7 @@
+'''
+Load tables into dataframes, clean data, dummify gender, age, and visible_to, add outcome columns
+'''
+
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
@@ -60,7 +64,7 @@ def outcome_columns(df):
     df['only_signup'] = (df['connected'] == False) & (df['q_ans'] == False)
 
     return df
-    
+
 
 def usage(row):
     '''
@@ -109,36 +113,6 @@ def connect(df):
     df['connect'] = df['engagement_level'].map({2:0, 3:1})
     return df
 
-def dummify(new_df, col):
-    '''
-    - Create dummy variable columns for selected categorical variables
-    - Add dummy variable df to new_df
-    - Drop original categorical columns from dataframe
-    '''
-    dummies_df = pd.get_dummies(new_df[col])
-    #dummies_df = dummies_df.astype(int)
-    new_df = pd.concat([new_df, dummies_df], axis=1)
-    new_df = new_df.drop(col, axis=1)
-
-    return new_df
-
-def create_dummies(new_df):
-    '''
-    Create dummy variable columns for categorical variables with a limited number
-    of categories:
-
-    gender
-    education
-    visibility to other users (connections only or all users)
-    '''
-    #Gender
-    dummify(new_df, 'gender')
-    # #Education
-    dummify(new_df, 'education')
-    # #Visibility
-    dummify(new_df, 'visible_to')
-
-    return new_df
 
 def to_day_of_week(df, col):
     '''

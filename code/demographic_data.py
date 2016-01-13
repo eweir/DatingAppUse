@@ -20,16 +20,14 @@ def gender_categories(row):
     6: other
 
     '''
+    nonbinary = ['["nonbinary"]', '["woman", "nonbinary"]', '["man", "nonbinary"]']
+
     if row['Genders'] == '["woman"]':
         return 1
     if row['Genders'] == '["man"]':
         return 2
-    if row['Genders'] == '["nonbinary"]':
+    if row['Genders'] in nonbinary:
         return 3
-    if row['Genders'] == '["woman", "nonbinary"]':
-        return 4
-    if row['Genders'] == '["man", "nonbinary"]':
-        return 5
 
 
 def gender_category_column(df):
