@@ -38,6 +38,7 @@ I used a Random Forest Classifier to model churn data. Input variables were: num
 
 I calculated feature importances from the random forest classifier model. The results can be seen below:
 
+<img src="https://raw.githubusercontent.com/eweir/SocialDiscoveryAppUse/master/images/feat_imports.png" alt="Image Not Found" width=100>
 
 ###Next Steps
 
