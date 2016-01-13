@@ -15,21 +15,33 @@ Data for the project was provided in the form of a database snapshot containing 
 
 Following data cleaning, the project started with exploratory data analysis of various features of the user dataset. In looking at overall user churn, it was clear that there are more users who have not churned than there are users who have churned.
 
-####Region
+#####Region
 
 Regions are anonymized at the request of app owners. All regions followed the same pattern as overall churn, except for region 1. Region 1 also had more males than females, which diverges from other regions and overall ratios. This, along with common professions in the area and region population may contribute to a higher churn rate.
 
-####Age
+#####Age
 
 Churn was relatively consistent among different age groups, and was aligned with overall churn rates for most groups. One notable difference was that users between the ages of 17 and 25 had an almost even ratio of churn/not churn. It is possible that users in this age group are making social connections in daily life and/or are at an age where they are less interested in reaching out to online tools to find social connections.
 
 ###Modeling
 
-####Feature Engineering
+#####Feature Engineering
 
-The project required quite a bit of feature engineering for both predictor and outcome variables. Code for the engineering of features can be found in new_features.py.
+The project required quite a bit of feature engineering for both predictor and outcome variables. Code for the engineering of features can be found in new_features.py. Code for geographic features is in geographic_data.py, and code for demographic features is in demographic_data.py
 
 
-####Random Forest
+#####Random Forest
 
 I used a Random Forest Classifier to model churn data. Input variables were: number of questions answered, number of connections, number of messages sent, user age, user preferred age, and geographic proximity. The outcome variable was churn, which was measured as activity with the past month.
+
+#####Feature Importances
+
+I calculated feature importances from the random forest classifier model. The results can be seen below:
+
+
+###Next Steps
+
+Next, I would be interested in:
+ - Natural language processing of text components of the app
+ - Explore user engagement funnel further
+    - look specifically at the behavior of users who find the app from different          sources
