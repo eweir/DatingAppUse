@@ -26,6 +26,13 @@ Churn was relatively consistent among different age groups, and was aligned with
 
 <img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/Churn_age.png" alt="Image Not Found" width=500>
 
+###User Engagement Funnel
+
+Another important question, aside from churn, is related to the user engagement funnel below. The end goal is for users who sign up to eventually send messages to other users, and it will be useful to identify variables that contribute to user messaging behavior.
+
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/funnel.png" alt="Image Not Found" width=500>
+
+
 ###Modeling
 
 #####Feature Engineering
@@ -39,7 +46,7 @@ I used a Random Forest Classifier to model churn data. Input variables were: num
 
 <img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/roc_churn.png" alt="Image Not Found" width=500>
 
-#####Feature Importances
+#####Feature Importances - Churn
 
 I calculated feature importances from the random forest classifier model. The results can be seen below:
 
@@ -52,9 +59,17 @@ I also fit a Random Forest model to predict user messaging behavior. Input varia
 
 <img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/roc_messaging.png" alt="Image Not Found" width=500>
 
+
+#####Feature Importances - Messaging
+
+Important features from the random forest classifier can be seen below:
+
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/feat_import_mess.png" alt="Image Not Found" width=500>
+
 ###Next Steps
 
 Next, I would be interested in:
  - Natural language processing of text components of the app
  - Explore user engagement funnel further
-    - look specifically at the behavior of users who find the app from different          sources
+    - Look specifically at the behavior of users who find the app from different sources
+    - Look at the number of messages exchanged (conversations)
