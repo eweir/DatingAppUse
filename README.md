@@ -19,6 +19,8 @@ Following data cleaning, the project started with exploratory data analysis of v
 
 Regions are anonymized at the request of app owners. All regions followed the same pattern as overall churn, except for region 1. Region 1 also had more males than females, which diverges from other regions and overall ratios. This, along with common professions in the area and region population may contribute to a higher churn rate.
 
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/Region_churn.png" width=500>
+
 #####Age
 
 Churn was relatively consistent among different age groups, and was aligned with overall churn rates for most groups. One notable difference was that users between the ages of 17 and 25 had an almost even ratio of churn/not churn. It is possible that users in this age group are making social connections in daily life and/or are at an age where they are less interested in reaching out to online tools to find social connections.
