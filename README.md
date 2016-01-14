@@ -4,7 +4,7 @@ This project is based on confidential data. Consequently, only the content of my
 
 ###Motivation
 
-This project was motivated by a business question. The owners of the app wanted to know how many users were churning and who those users are.
+This project was motivated by a business question: How many users are churning and who are they? Which users are messaging other users?
 
 ###Data
 
@@ -23,6 +23,9 @@ Regions are anonymized at the request of app owners. All regions followed the sa
 
 Churn was relatively consistent among different age groups, and was aligned with overall churn rates for most groups. One notable difference was that users between the ages of 17 and 25 had an almost even ratio of churn/not churn. It is possible that users in this age group are making social connections in daily life and/or are at an age where they are less interested in reaching out to online tools to find social connections.
 
+
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/Churn_age.png" alt="Image Not Found" width=500>
+
 ###Modeling
 
 #####Feature Engineering
@@ -30,15 +33,24 @@ Churn was relatively consistent among different age groups, and was aligned with
 The project required quite a bit of feature engineering for both predictor and outcome variables. Code for the engineering of features can be found in new_features.py. Code for geographic features is in geographic_data.py, and code for demographic features is in demographic_data.py
 
 
-#####Random Forest
+#####Random Forest - Churn
 
-I used a Random Forest Classifier to model churn data. Input variables were: number of questions answered, number of connections, number of messages sent, user age, user preferred age, and geographic proximity. The outcome variable was churn, which was measured as activity with the past month.
+I used a Random Forest Classifier to model churn data. Input variables were: number of questions answered, number of connections, number of messages sent, user age, user preferred age, and geographic proximity. The outcome variable was churn, which was measured as activity with the past month. The random forest model had an AUC of 0.77, with the following ROC plot:
+
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/roc_churn.png" alt="Image Not Found" width=500>
 
 #####Feature Importances
 
 I calculated feature importances from the random forest classifier model. The results can be seen below:
 
-<img src="https://raw.githubusercontent.com/eweir/SocialDiscoveryAppUse/master/images/feat_imports.png" alt="Image Not Found" width=400>
+<img src="https://raw.githubusercontent.com/eweir/SocialDiscoveryAppUse/master/images/feat_imports.png" alt="Image Not Found" width=500>
+
+
+#####Random Forest - Messaging
+
+I also fit a Random Forest model to predict user messaging behavior. Input variables were: number of questions answered, number of connections, user age, user preferred age, and geographic proximity. The outcome variable was weather or not users had sent any messages. The model had an AUC of 0.86, with the following ROC plot:
+
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/roc_messaging.png" alt="Image Not Found" width=500>
 
 ###Next Steps
 
