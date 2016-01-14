@@ -30,7 +30,7 @@ Churn was relatively consistent among different age groups, and was aligned with
 
 Another important question, aside from churn, is related to the user engagement funnel below. The end goal is for users who sign up to eventually send messages to other users, and it will be useful to identify variables that contribute to user messaging behavior.
 
-<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/funnel.png" alt="Image Not Found" width=500>
+<img src="https://github.com/eweir/SocialDiscoveryAppUse/blob/master/images/funnel.png" alt="Image Not Found" width=700>
 
 
 ###Modeling
